@@ -86,14 +86,6 @@ namespace RunCat
                 {
                     Checked = runner.Equals("cat")
                 },
-                new ToolStripMenuItem("Parrot", null, SetRunner)
-                {
-                    Checked = runner.Equals("parrot")
-                },
-                new ToolStripMenuItem("Horse", null, SetRunner)
-                {
-                    Checked = runner.Equals("horse")
-                }
             });
 
             themeMenu = new ToolStripMenuItem("Theme", null, new ToolStripMenuItem[]
