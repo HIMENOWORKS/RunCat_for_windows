@@ -50,12 +50,11 @@ namespace RunCat
         private const int CPU_TIMER_DEFAULT_INTERVAL = 3000;
         private const int ANIMATE_TIMER_DEFAULT_INTERVAL = 200;
         private PerformanceCounter cpuUsage;
-        private ToolStripMenuItem runnerMenu;
         private ToolStripMenuItem themeMenu;
         private ToolStripMenuItem startupMenu;
         private ToolStripMenuItem runnerSpeedLimit;
         private NotifyIcon notifyIcon;
-        private string runner = "";
+        private string runner = "cat";
         private int current = 0;
         private float minCPU;
         private float interval;
@@ -79,14 +78,6 @@ namespace RunCat
 
             cpuUsage = new PerformanceCounter("Processor Information", "% Processor Utility", "_Total");
             _ = cpuUsage.NextValue(); // discards first return value
-
-            runnerMenu = new ToolStripMenuItem("Runner", null, new ToolStripMenuItem[]
-            {
-                new ToolStripMenuItem("Cat", null, SetRunner)
-                {
-                    Checked = runner.Equals("cat")
-                },
-            });
 
             themeMenu = new ToolStripMenuItem("Theme", null, new ToolStripMenuItem[]
             {
@@ -137,7 +128,6 @@ namespace RunCat
             ContextMenuStrip contextMenuStrip = new ContextMenuStrip(new Container());
             contextMenuStrip.Items.AddRange(new ToolStripItem[]
             {
-                runnerMenu,
                 themeMenu,
                 startupMenu,
                 runnerSpeedLimit,
@@ -228,14 +218,6 @@ namespace RunCat
                 item.Checked = false;
             }
             sender.Checked = true;
-        }
-
-        private void SetRunner(object sender, EventArgs e)
-        {
-            ToolStripMenuItem item = (ToolStripMenuItem)sender;
-            UpdateCheckedState(item, runnerMenu);
-            runner = item.Text.ToLower();
-            SetIcons();
         }
 
         private void SetThemeIcons(object sender, EventArgs e)
