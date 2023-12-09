@@ -51,8 +51,8 @@ namespace RunCat
         private const int ANIMATE_TIMER_DEFAULT_INTERVAL = 200;
         private PerformanceCounter cpuUsage;
         private ToolStripMenuItem themeMenu;
-        private ToolStripMenuItem startupMenu;
         private ToolStripMenuItem runnerSpeedLimit;
+        private ToolStripMenuItem startupMenu;
         private NotifyIcon notifyIcon;
         private string runner = "cat";
         private int current = 0;
@@ -95,12 +95,6 @@ namespace RunCat
                 }
             });
 
-            startupMenu = new ToolStripMenuItem("Startup", null, SetStartup);
-            if (IsStartupEnabled())
-            {
-                startupMenu.Checked = true;
-            }
-
             runnerSpeedLimit = new ToolStripMenuItem("Runner Speed Limit", null, new ToolStripMenuItem[]
             {
                 new ToolStripMenuItem("Default", null, SetSpeedLimit)
@@ -125,12 +119,18 @@ namespace RunCat
                 }
             });
 
+            startupMenu = new ToolStripMenuItem("Startup", null, SetStartup);
+            if (IsStartupEnabled())
+            {
+                startupMenu.Checked = true;
+            }
+
             ContextMenuStrip contextMenuStrip = new ContextMenuStrip(new Container());
             contextMenuStrip.Items.AddRange(new ToolStripItem[]
             {
                 themeMenu,
-                startupMenu,
                 runnerSpeedLimit,
+                startupMenu,
                 new ToolStripSeparator(),
                 new ToolStripMenuItem($"{Application.ProductName} v{Application.ProductVersion}")
                 {
