@@ -195,14 +195,6 @@ namespace RunCat
             ResourceManager rm = Resources.ResourceManager;
             // default runner is cat
             int capacity = 5;
-            if (runner.Equals("parrot"))
-            {
-                capacity = 10;
-            } 
-            else if (runner.Equals("horse")) 
-            {
-                capacity = 14;
-            }
             List<Icon> list = new List<Icon>(capacity);
             for (int i = 0; i < capacity; i++)
             {
